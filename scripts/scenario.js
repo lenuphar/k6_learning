@@ -21,11 +21,15 @@ export const options = {
 };
 
 export function contacts() {
-  http.get('https://test.k6.io/contacts.php', {
-    tags: { my_custom_tag: 'contacts' },
-  });
+  testContact();
 }
 
 export function news() {
   http.get('https://test.k6.io/news.php', { tags: { my_custom_tag: 'news' } });
+}
+
+function testContact () {
+  http.get('https://test.k6.io/contacts.php', {
+    tags: { my_custom_tag: 'contacts' },
+  });
 }
