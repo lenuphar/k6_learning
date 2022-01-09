@@ -1,29 +1,30 @@
 import http from 'k6/http';
-import { sleep, check } from 'k6';
-import { Counter } from 'k6/metrics';
-
-export const requests = new Counter('http_reqs');
 
 export const options = {
+  discardResponseBodies: true,
   scenarios: {
-    example_scenario: {
-      executor: 'shared-iterations',
-      startTime: '0s'
+    contacts: {
+      executor: 'constant-vus',
+      exec: 'contacts',
+      vus: 50,
+      duration: '30s',
     },
-    another_scenario: {
-      executor: 'shared-iterations',
-      startTime: '5s'
+    news: {
+      executor: 'per-vu-iterations',
+      exec: 'news',
+      vus: 50,
+      iterations: 100,
+      startTime: '30s',
+      maxDuration: '1m',
     },
   },
 };
 
-export default function () {
-  const res = http.get('http://test.k6.io');
-
-  sleep(1);
-
-  const checkRes = check(res, {
-    'status is 200': (r) => r.status === 200,
-    'response body': (r) => r.body.indexOf('Feel free to browse') !== -1,
+export function contacts() {
+  http.get('https://test.k6.io/contacts.php', {
+    tags: { my_custom_tag: 'contacts' },
   });
 }
+
+export function news() {
+  http.get('https://test.k6.io/news.php', { tags: { my_custom_tag: 'news' } });
