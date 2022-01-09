@@ -1,9 +1,9 @@
 import http from 'k6/http';
 
-export const options = {
+export let options = {
   discardResponseBodies: true,
   scenarios: {
-    contacts: {
+    shopping: {
       executor: 'constant-vus',
       exec: 'contacts',
       vus: 50,
@@ -19,6 +19,8 @@ export const options = {
     },
   },
 };
+
+options.scenarios.shopping.duration = '23s';
 
 export function contacts() {
   testContact();
