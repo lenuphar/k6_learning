@@ -5,13 +5,15 @@ import { Counter } from 'k6/metrics';
 export const requests = new Counter('http_reqs');
 
 export const options = {
-  stages: [
-    { target: 20, duration: '3s' },
-    { target: 15, duration: '3s' },
-    { target: 0, duration: '3s' },
-  ],
-  thresholds: {
-    requests: ['count < 100'],
+  scenarios: {
+    example_scenario: {
+      executor: 'shared-iterations',
+      startTime: '0s'
+    },
+    another_scenario: {
+      executor: 'shared-iterations',
+      startTime: '5s'
+    },
   },
 };
 
