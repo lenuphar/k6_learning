@@ -1,5 +1,4 @@
 import http from 'k6/http';
-import { news } from './http_client.js';
 
 export let options = {
   discardResponseBodies: true,
