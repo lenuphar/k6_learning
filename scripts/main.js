@@ -21,15 +21,23 @@ export let options = {
   },
 };
 
+
+
 options.scenarios.shopping.duration = '23s';
+
+export function setup() {
+  var fs = require('fs');
+  var files = fs.readdirSync('/scenarios/');
+  console.info(files);
+}
 
 export function contacts() {
   testContact();
 }
 
-// export function news() {
-//   http.get('https://test.k6.io/news.php', { tags: { my_custom_tag: 'news' } });
-// }
+export function news() {
+  http.get('https://test.k6.io/news.php', { tags: { my_custom_tag: 'news' } });
+}
 
 function testContact () {
   http.get('https://test.k6.io/contacts.php', {
