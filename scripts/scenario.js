@@ -28,3 +28,4 @@ export function contacts() {
 
 export function news() {
   http.get('https://test.k6.io/news.php', { tags: { my_custom_tag: 'news' } });
+}
