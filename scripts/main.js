@@ -20,13 +20,12 @@ export let options = {
   },
 };
 
-
-
 options.scenarios.shopping.duration = '23s';
 
 export function setup() {
-  var fs = require('fs');
-  var files = fs.readdirSync('/scenarios/');
+  // var fs = require('fs');
+  // var files = fs.readdirSync('/scenarios/');
+  var files = open('/scenarios/');
   console.info(files);
 }
 
