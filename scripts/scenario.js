@@ -1,4 +1,5 @@
 import http from 'k6/http';
+import { news } from './http_client.js';
 
 export let options = {
   discardResponseBodies: true,
@@ -26,9 +27,9 @@ export function contacts() {
   testContact();
 }
 
-export function news() {
-  http.get('https://test.k6.io/news.php', { tags: { my_custom_tag: 'news' } });
-}
+// export function news() {
+//   http.get('https://test.k6.io/news.php', { tags: { my_custom_tag: 'news' } });
+// }
 
 function testContact () {
   http.get('https://test.k6.io/contacts.php', {

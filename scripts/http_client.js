@@ -13,3 +13,7 @@ export function post(url, headers = {}, body = {}) {
 	let resBodyJson = JSON.parse(res.body);
 	return resBodyJson;
 }
+
+export function news() {
+    http.get('https://test.k6.io/news.php', { tags: { my_custom_tag: 'news' } });
+  }
