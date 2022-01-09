@@ -24,7 +24,7 @@ options.scenarios.shopping.duration = '23s';
 
   // var fs = require('fs');
   // var files = fs.readdirSync('/scenarios/');
-  var files = opendir('/scripts/scenarios/');
+  var files = open('./scripts/scenarios/');
   console.info(files);
 
 export function setup() {
